@@ -3,13 +3,22 @@
 #include "main.h"
 #include "usb_microphone.h"
 
-// --- HARDCODED PINS AND SETTINGS ---
+// Bring back the missing library that defines the audio shapes
+#include "pico/default_i2s_board_defines.h"
+
+// --- OVERRIDE DEFAULT PINS WITH YOUR WIRING ---
+#undef I2S_MIC_SCK
+#undef I2S_MIC_WS
+#undef I2S_MIC_SD
+#undef I2S_MIC_BPS
+#undef I2S_MIC_RATE_DEF
+
 #define I2S_MIC_SCK 18
 #define I2S_MIC_WS 19
 #define I2S_MIC_SD 20
 #define I2S_MIC_BPS 32
 #define I2S_MIC_RATE_DEF 48000
-#define SIZEOF_DMA_BUFFER_IN_BYTES 256
+
 #define STEREO 0
 #define RX 1
 
