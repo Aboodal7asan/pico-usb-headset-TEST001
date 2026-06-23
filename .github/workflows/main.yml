@@ -30,7 +30,7 @@ jobs:
         mkdir build
         cd build
         cmake -G Ninja ..
-        ninja
+        ninja usb_microphone_i2s_mono
 
     - name: Upload .uf2 File
       uses: actions/upload-artifact@v4
