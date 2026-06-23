@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 typedef struct _ring_buf_t {
     uint8_t *buffer;
