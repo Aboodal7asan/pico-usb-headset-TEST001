@@ -1,0 +1,39 @@
+name: Build RP2040 Firmware
+
+on:
+  workflow_dispatch: # This allows you to trigger the build manually
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v4
+      with:
+        submodules: recursive
+
+    - name: Install ARM Toolchain and CMake
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc-arm-none-eabi libnewlib-arm-none-eabi build-essential cmake ninja-build
+
+    - name: Setup Pico SDK
+      run: |
+        git clone https://github.com/raspberrypi/pico-sdk.git
+        cd pico-sdk
+        git submodule update --init
+        echo "PICO_SDK_PATH=$PWD" >> $GITHUB_ENV
+
+    - name: Build Firmware
+      run: |
+        mkdir build
+        cd build
+        cmake -G Ninja ..
+        ninja
+
+    - name: Upload .uf2 File
+      uses: actions/upload-artifact@v4
+      with:
+        name: rp2040-mic-firmware
+        path: build/*.uf2
