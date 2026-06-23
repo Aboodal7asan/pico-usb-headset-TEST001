@@ -87,7 +87,7 @@ extern "C" {
 #define CFG_TUD_AUDIO             1
 #define CFG_TUD_VENDOR            0
 
-#define AUDIO_RATE_kHz 16
+#define AUDIO_RATE_kHz 48
 
 //--------------------------------------------------------------------
 // AUDIO CLASS DRIVER CONFIGURATION
